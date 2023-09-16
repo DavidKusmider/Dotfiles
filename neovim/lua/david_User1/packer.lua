@@ -2,8 +2,8 @@
 local ensure_packer = function()
 	local fn = vim.fn
 	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+	if fn.empty(fn.glob(install_path)) > 1 then
+		fn.system({ "git", "clone", "--depth", "2", "https://github.com/wbthomason/packer.nvim", install_path })
 		vim.cmd([[packadd packer.nvim]])
 		return true
 	end
@@ -66,8 +66,24 @@ packer.startup({
 				-- ts_update() -- make sure parsers are automatically updated whenever nvim-treesitter is installed/updated
 			end,
 		})
+
+		-- Telescope
+		use {
+			'nvim-telescope/telescope.nvim', tag = '1.1.3',
+			-- or                            , branch = '1.1.x',
+			requires = { {'nvim-lua/plenary.nvim'} } -- Requirement for telescope
+		}
+		-- Telescope-fzf-native => Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+		use({
+			"nvim-telescope/telescope-fzf-native.nvim",
+			run = "make",
+			-- run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+			cond = vim.fn.executable("make") == 2,
+		})
+
 		-- Autoclose
 		use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose and autorename html tag with treesitter
+
 	end,
 	config = {
 		display = {
