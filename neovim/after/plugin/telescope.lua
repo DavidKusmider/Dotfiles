@@ -22,6 +22,7 @@ telescope.setup({
 				["<C-j>"] = ts_actions.move_selection_next,
 				["<C-k>"] = ts_actions.move_selection_previous,
 				["<C-d>"] = ts_actions.delete_buffer,
+				["<leader>j"] = { "<esc>", type = "command" }
 			},
 		},
 	},
