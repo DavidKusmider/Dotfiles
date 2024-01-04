@@ -69,7 +69,7 @@ packer.startup({
 
 		-- Telescope
 		use {
-			'nvim-telescope/telescope.nvim', tag = '1.1.3',
+			'nvim-telescope/telescope.nvim',
 			-- or                            , branch = '1.1.x',
 			requires = { {'nvim-lua/plenary.nvim'} } -- Requirement for telescope
 		}
@@ -84,6 +84,62 @@ packer.startup({
 		-- Autoclose
 		use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose and autorename html tag with treesitter
 
+		-- --Completion
+		-- use('hrsh7th/nvim-cmp')  -- The completion plugin
+		-- use('hrsh7th/cmp-buffer')  -- buffer completions
+		-- use('hrsh7th/cmp-path')  -- path completions
+		-- use('hrsh7th/cmp-cmdline')  --command line completions
+		--
+		-- -- Snippets
+		-- use({ -- Snippet engine  required for Completion above
+		-- 	"L3MON4D3/LuaSnip",
+		-- 	-- follow latest release.
+		-- 	tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- 	-- install jsregexp (optional!:).
+		-- 	run = "make install_jsregexp"
+		-- })
+		--
+		-- use('rafamadriz/friendly-snippets')  -- A bunch of snippets to use
+
+		-- nvim-cmp => autocompletion
+		use({
+
+			"hrsh7th/nvim-cmp",
+
+			requires = {
+				"hrsh7th/cmp-nvim-lsp", -- integration for nvim-lspconfig
+				"hrsh7th/cmp-path",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-cmdline",
+				"L3MON4D3/LuaSnip",
+				"rafamadriz/friendly-snippets", -- collection of snippets
+				"hrsh7th/cmp-nvim-lsp",
+			},
+		})
+		use('williamboman/mason.nvim')
+		use('williamboman/mason-lspconfig.nvim')
+		use('neovim/nvim-lspconfig')
+		use('mfussenegger/nvim-jdtls')
+
+
+		-- LSP
+		-- use({
+		-- 	"neovim/nvim-lspconfig",
+		-- 	requires = {
+		-- 		"williamboman/mason.nvim",
+		-- 		"williamboman/mason-lspconfig.nvim",
+		--
+		-- 		-- se renseigner sur les plugins ci-dessous !!!!!
+		--
+		-- 		-- Display useful loading status updates for LSP
+		-- 		-- "j-hui/fidget.nvim",
+		-- 		--
+		-- 		-- -- Additional lua configuration, makes nvim stuff amazing
+		-- 		-- "folke/neodev.nvim",
+		-- 		--
+		-- 		-- "RRethy/vim-illuminate",
+		-- 	},
+		-- })
 	end,
 	config = {
 		display = {

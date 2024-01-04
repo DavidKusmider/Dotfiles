@@ -15,7 +15,9 @@ vim.g.mapleader = " "
 
 key("n", "<leader>a", ":NvimTreeToggle<CR>", full_options)
 key("n", "<leader>fa", ":NvimTreeFindFile<CR>", full_options)
-key("i", "<leader>jk", "<esc>")
+key('x', '<leader>jk', '<Esc>', full_options)
+key('i', '<leader>jk', '<Esc>', full_options)
+
 
 -- Telescope
 key("n", "<leader>ff", ":Telescope find_files<CR>", full_options)
